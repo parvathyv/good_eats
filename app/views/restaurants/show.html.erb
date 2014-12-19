@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant Details</title>
+</head>
+<body>
+	
+
+  <% if flash.any? %>
+    <div class="flash">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+
+  <% if @restaurant.errors.any? %>
+    <ul>
+      <% @restaurant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <%end%><br>
+  <%= link_to "Home", restaurants_path%><br> 
+  <h1><%=@restaurant.name%></h1>
+
+  <li>Name : <%=@restaurant.address%></li><br>
+  <li>City : <%=@restaurant.city%><br></li>
+  <li>State : <%=@restaurant.state%></li><br>
+  <li>Zip : <%=@restaurant.zip%></li><br>
+  <li>Category : <%=@restaurant.category%></li><br>
+  <li>Description : <%=@restaurant.description%></li><br>
+  <br>
+   
+   
+  <br>
+  <h3>See all reviews</h3>
+    <%@restaurant.reviews.each do|rev|%>
+       Rating : <%=rev.rating%><br>
+       Body : <%=rev.body%><br>
+       Created at : <%=rev.created_at%><br>
+    <%end%>
+	 <br>
+     	
+  <%= link_to "Create a new review ", new_restaurant_review_path(@restaurant) %>
+  <br><br>
+
+  <h3>Feeling lazy?</h3>
+
+  <%= form_for ([@restautant, @review]) do |f| %>
+    <div>
+      <% if flash.any? %>
+        <div class="flash">
+          <%= flash[:notice] %>
+        </div>
+      <%end%> 
+    </div> 
+  
+    <% if @review.errors.any? %>
+      <ul>
+        <% @review.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <%end%>
+
+    <%= f.label :rating, "Rating" %><br />
+    <p><%= f.text_field :rating %></p><br>
+    <%= f.label :body, "Body" %><br />
+    <%= f.text_area :body%><br>
+    <%= f.submit "Create" %>
+
+  <% end %>
+		
+</body>
+</html>

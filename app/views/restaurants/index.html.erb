@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome to GoodEats</title>
+</head>
+<body>
+<h1>Welcome to GoodEats!</h1>
+	<%@restaurants.each do|rest|%>
+	  <br>
+	    <%= link_to "Details", restaurant_path(rest.id) %><br>
+	   
+		Name : <%=rest.name%><br>
+		Address : <%=rest.address%><br>
+		City : <%=rest.city%><br>
+		State : <%=rest.state%><br>
+		Zip : <%=rest.zip%><br>
+		Category : <%=rest.category%><br>
+		Description : <%=rest.description%><br>
+    
+	<%end%>
+
+</body>
+</html>

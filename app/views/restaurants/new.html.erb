@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter your question</title>
+</head>
+<body>
+<h1>Join the Foodeverse</h1><br>
+
+<%= form_for @restaurant, action: "create", html: {class: "nifty_form"} do |f| %>
+  <div>
+    <% if flash.any? %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <%end%> 
+  </div> 
+  
+  <% if @restaurant.errors.any? %>
+    <ul>
+      <% @restaurant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <%end%>
+
+  <%= f.label :name, "Name" %><br />
+  <p><%= f.text_field :name %></p><br>
+  <%= f.label :address, "Address" %><br />
+  <%= f.text_field :address%><br>
+  <%= f.label :city, "City" %><br />
+  <p><%= f.text_field :city %></p><br>
+  <%= f.label :state, "State" %><br />
+  <p><%= f.text_field :state %></p><br>
+   <%= f.label :zip, "Zip" %><br />
+  <p><%= f.text_field :zip %></p><br>
+  <%= f.label :description, "Description" %><br />
+  <p><%= f.text_field :description %></p><br>
+
+  <%= f.label :category, "Category" %><br />
+  <p><%= f.text_field :category %></p><br>
+  <%= f.submit "Create" %>
+
+<% end %>
+<br>
+<%= link_to "View all restaurants ", restaurants_path %>
+
+
+</body>
+</html>

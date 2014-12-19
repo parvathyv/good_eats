@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enter your question</title>
+</head>
+<body>
+<h1>Lay down your feelings</h1><br>
+
+<%= form_for ([@restaurant, @review]) do |f| %>
+  <div>
+    <% if flash.any? %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <%end%> 
+  </div> 
+  
+  <% if @review.errors.any? %>
+    <ul>
+      <% @review.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <%end%>
+
+  <%= f.label :rating, "Rating" %><br />
+  <p><%= f.text_field :rating %></p><br>
+  <%= f.label :body, "Body" %><br>
+  <%= f.text_area :body%><br>
+  <%= f.submit "Create" %><br><br>
+  <%= link_to "Back to restaurant", restaurant_path(@restaurant) %>
+<% end %>
+
+</body>
+</html>
